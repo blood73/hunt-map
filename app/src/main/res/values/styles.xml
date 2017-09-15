@@ -17,4 +17,25 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="TextAppearanceRegionName">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textColor">@color/regionNameTextColor</item>
+        <item name="android:textSize">@dimen/region_name_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearanceRegionPrice">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/regionPriceTextColor</item>
+        <item name="android:textSize">@dimen/region_price_text_size</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="LinearLayoutRegion">
+        <item name="android:paddingBottom">@dimen/region_item_bottom_padding</item>
+        <item name="android:paddingEnd">@dimen/region_item_right_padding</item>
+        <item name="android:paddingStart">@dimen/region_item_left_padding</item>
+        <item name="android:paddingTop">@dimen/region_item_top_padding</item>
+    </style>
+
 </resources>

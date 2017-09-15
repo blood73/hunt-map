@@ -6,4 +6,5 @@
     <string name="all_maps">Все карты</string>
     <string name="default_region_name">Нижегородская обл.</string>
     <string name="default_region_price">366 руб.</string>
+    <string name="select_button_description">Отметить</string>
 </resources>

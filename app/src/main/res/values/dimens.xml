@@ -15,4 +15,5 @@
     <dimen name="region_price_height">24dp</dimen>
     <dimen name="region_price_text_size">12sp</dimen>
     <dimen name="region_price_margin_top">-8dp</dimen>
+    <dimen name="select_image_button_width">16dp</dimen>
 </resources>
