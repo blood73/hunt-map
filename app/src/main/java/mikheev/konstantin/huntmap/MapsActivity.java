@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mikheev.konstantin.huntmap.adapters.MyViewPagerAdapter;
+
 public class MapsActivity extends AppCompatActivity {
 
     private MyViewPagerAdapter myViewPagerAdapter;

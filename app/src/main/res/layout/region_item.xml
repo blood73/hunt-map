@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/region_item_padding">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/regionCardView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/region_item_height"
-        android:id="@+id/regionCardView">
+        style="@style/CardViewStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,27 +17,43 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                style="@style/LinearLayoutRegion"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                style="@style/LinearLayoutRegion">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/region_name"
-                    tools:text="@string/default_region_name"
+                    style="@style/TextAppearanceRegionName"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/region_name_height"
                     android:gravity="center_vertical"
-                    style="@style/TextAppearanceRegionName" />
+                    tools:text="@string/default_region_name" />
 
-                <TextView
-                    android:id="@+id/region_price"
-                    tools:text="@string/default_region_price"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/region_price_height"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/region_price_margin_top"
-                    style="@style/TextAppearanceRegionPrice"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/region_price"
+                        style="@style/TextAppearanceRegionPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/region_price_height"
+                        android:layout_marginTop="@dimen/region_price_margin_top"
+                        android:gravity="center_vertical"
+                        tools:text="@string/default_region_price" />
+
+                    <TextView
+                        style="@style/TextAppearanceRegionPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/region_price_height"
+                        android:layout_marginTop="@dimen/region_price_margin_top"
+                        android:gravity="center_vertical"
+                        tools:text="@string/price_rub"
+                        android:text="@string/price_rub"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -44,8 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="end"
-                android:paddingStart="@dimen/region_item_right_padding"
-                android:paddingEnd="@dimen/region_item_right_padding">
+                android:paddingEnd="@dimen/region_item_right_padding"
+                android:paddingStart="@dimen/region_item_right_padding">
 
                 <ImageButton
                     android:id="@+id/selectImageButton"
@@ -53,8 +70,8 @@
                     android:layout_height="@dimen/select_image_button_width"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@string/select_button_description"
-                    android:visibility="gone"
-                    android:src="@drawable/i_o" />
+                    android:src="@drawable/i_o"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
