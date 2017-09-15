@@ -4,4 +4,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="my_maps">Мои карты</string>
     <string name="all_maps">Все карты</string>
+    <string name="default_region_name">Нижегородская обл.</string>
+    <string name="default_region_price">366 руб.</string>
 </resources>

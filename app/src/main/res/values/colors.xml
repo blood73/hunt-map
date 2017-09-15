@@ -3,4 +3,6 @@
     <color name="colorPrimary">#6db94b</color>
     <color name="colorPrimaryDark">#58983c</color>
     <color name="colorAccent">#58983c</color>
+    <color name="regionNameTextColor">#4c4c4c</color>
+    <color name="regionPriceTextColor">#a0a0a0</color>
 </resources>
