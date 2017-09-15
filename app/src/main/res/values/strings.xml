@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Карты</string>
+    <string name="action_search">Поиск</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="my_maps">Мои карты</string>
+    <string name="all_maps">Все карты</string>
+</resources>
