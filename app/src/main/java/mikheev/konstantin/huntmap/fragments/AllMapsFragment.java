@@ -1,11 +1,11 @@
 package mikheev.konstantin.huntmap.fragments;
 
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private RecyclerView rvRegions;
     private RegionsAdapter adapter;
     private Button buyButton;
+    private int totalPrice = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,23 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         adapter.toggleSelection(position);
 
         int selectedItemsCount = adapter.getSelectedItemCount();
-        Log.d("Items Count", Integer.toString(selectedItemsCount));
+        int clickedRegionPrice = regionItems.get(position).getRegionPrice();
+
+        if (adapter.isSelected(position)) {
+            totalPrice += clickedRegionPrice;
+        } else {
+            totalPrice -= clickedRegionPrice;
+        }
+
         if (selectedItemsCount != 0) {
             buyButton.setVisibility(View.VISIBLE);
         } else {
             buyButton.setVisibility(View.INVISIBLE);
         }
+
+        Resources res = getResources();
+        String textBuyButton = String.format(res.getString(R.string.buy_button), totalPrice);
+        buyButton.setText(textBuyButton);
     }
 
     private void initDataset() {
