@@ -1,23 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="bottom">
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerViewRegions"
-        tools:listitem="@layout/region_item" />
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/buy_button"
+        style="@style/BuyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:text="@string/buy_button"
-        style="@style/BuyButton"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/buy_button"
+        android:id="@+id/recyclerViewRegions"
+        tools:listitem="@layout/region_item" />
 
 </RelativeLayout>
