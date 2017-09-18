@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
@@ -42,12 +43,32 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         rvRegions.setLayoutManager(llm);
         initializeAdapter();
 
+        Button buyButton = (Button) rootView.findViewById(R.id.buy_button);
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickBuyButton();
+            }
+        });
+
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void clickBuyButton() {
+        Resources res = getResources();
+
+        String textBuyResult = String.format(res.getString(R.string.buy_button_pressed), totalPrice);
+        Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
+        toast.show();
+
+        adapter.clearSelection();
+        totalPrice = 0;
+        buyButton.setVisibility(View.INVISIBLE);
     }
 
     private void initializeAdapter() {

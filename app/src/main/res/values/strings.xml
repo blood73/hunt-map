@@ -9,4 +9,5 @@
     <string name="select_button_description">Отметить</string>
     <string name="price_rub">\u0020руб.</string>
     <string name="buy_button">Купить за %1$d рублей</string>
+    <string name="buy_button_pressed">Вы купили на %1$d рублей</string>
 </resources>
