@@ -1,9 +1,10 @@
 package mikheev.konstantin.huntmap.models;
 
-public class Region {
+public class RegionItem {
 
     private String regionName;
     private int regionPrice;
+    private boolean isActive;
 
     public String getRegionName() {
         return regionName;
@@ -21,4 +22,11 @@ public class Region {
         this.regionPrice = regionPrice;
     }
 
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 }

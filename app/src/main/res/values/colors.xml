@@ -7,4 +7,6 @@
     <color name="regionPriceTextColor">#a0a0a0</color>
     <color name="buyButtonColor">#4c4c4c</color>
     <color name="white">#fff</color>
+    <color name="selectedRegionBackground">#f9f9f9</color>
+    <color name="unselectedRegionBackground">#fff</color>
 </resources>
