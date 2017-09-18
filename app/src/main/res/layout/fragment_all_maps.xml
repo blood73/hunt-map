@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/buy_button"
-        style="@style/BuyButton" />
+        style="@style/BuyButton"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

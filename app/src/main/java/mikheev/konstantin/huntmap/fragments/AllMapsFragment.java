@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
@@ -20,7 +21,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private List<RegionItem> regionItems;
     private RecyclerView rvRegions;
     private RegionsAdapter adapter;
-    private ImageButton buyButton;
+    private Button buyButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         View rootView = inflater.inflate(R.layout.fragment_all_maps, container, false);
 
         rvRegions = (RecyclerView) rootView.findViewById(R.id.recyclerViewRegions);
-        buyButton = (ImageButton) rootView.findViewById(R.id.select_image_button);
+        buyButton = (Button) rootView.findViewById(R.id.buy_button);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvRegions.setLayoutManager(llm);
@@ -57,10 +58,12 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     public void onItemClicked(int position) {
         adapter.toggleSelection(position);
 
-        int selectedItemsCount = adapter.getItemCount();
-
+        int selectedItemsCount = adapter.getSelectedItemCount();
+        Log.d("Items Count", Integer.toString(selectedItemsCount));
         if (selectedItemsCount != 0) {
-
+            buyButton.setVisibility(View.VISIBLE);
+        } else {
+            buyButton.setVisibility(View.INVISIBLE);
         }
     }
 
