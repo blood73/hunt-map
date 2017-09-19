@@ -2,6 +2,7 @@ package mikheev.konstantin.huntmap.adapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +53,6 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     }
 
     private List<RegionItem> regionItems;
-    private static final int TYPE_INACTIVE = 0;
-    private static final int TYPE_ACTIVE = 1;
     private RegionViewHolder.ClickListener clickListener;
 
     public RegionsAdapter(List<RegionItem> regionItems, RegionViewHolder.ClickListener clickListener) {
@@ -77,12 +76,17 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         regionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
         regionViewHolder.regionPrice.setText(Integer.toString(regionItems.get(position).getRegionPrice()));
 
-        if (isSelected(position)) {
-            regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
-            regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
+        if (regionItems.get(position).getIsActive()) {
+            if (isSelected(position)) {
+                regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
+                regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
+            } else {
+                regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+                regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
+            }
         } else {
             regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-            regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
+            regionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
         }
     }
 
@@ -91,10 +95,10 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         return regionItems != null ? regionItems.size() : 0;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        final RegionItem item = regionItems.get(position);
-
-        return item.getIsActive() ? TYPE_ACTIVE : TYPE_INACTIVE;
+    public void disableBoughtRegions() {
+        for (Integer i : getSelectedItems()) {
+            regionItems.get(i).disableRegion();
+            notifyItemChanged(i);
+        }
     }
 }

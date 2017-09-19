@@ -3,7 +3,7 @@ package mikheev.konstantin.huntmap.models;
 public class RegionItem {
     private String regionName;
     private int regionPrice;
-    private boolean isActive;
+    private boolean isActive = true;
 
     public String getRegionName() {
         return regionName;
@@ -25,8 +25,8 @@ public class RegionItem {
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    public void disableRegion() {
+        this.isActive = false;
     }
 
 }

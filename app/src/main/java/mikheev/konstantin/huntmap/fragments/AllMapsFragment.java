@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,9 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
         toast.show();
 
+        adapter.disableBoughtRegions();
         adapter.clearSelection();
+
         totalPrice = 0;
         buyButton.setVisibility(View.GONE);
     }
@@ -78,26 +81,31 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
 
     @Override
     public void onItemClicked(int position) {
-        adapter.toggleSelection(position);
 
-        int selectedItemsCount = adapter.getSelectedItemCount();
-        int clickedRegionPrice = regionItems.get(position).getRegionPrice();
+        boolean isActive = regionItems.get(position).getIsActive();
 
-        if (adapter.isSelected(position)) {
-            totalPrice += clickedRegionPrice;
-        } else {
-            totalPrice -= clickedRegionPrice;
+        if (isActive) {
+            adapter.toggleSelection(position);
+
+            int selectedItemsCount = adapter.getSelectedItemCount();
+            int clickedRegionPrice = regionItems.get(position).getRegionPrice();
+
+            if (adapter.isSelected(position)) {
+                totalPrice += clickedRegionPrice;
+            } else {
+                totalPrice -= clickedRegionPrice;
+            }
+
+            if (selectedItemsCount != 0) {
+                buyButton.setVisibility(View.VISIBLE);
+            } else {
+                buyButton.setVisibility(View.GONE);
+            }
+
+            Resources res = getResources();
+            String textBuyButton = String.format(res.getString(R.string.buy_button), totalPrice);
+            buyButton.setText(textBuyButton);
         }
-
-        if (selectedItemsCount != 0) {
-            buyButton.setVisibility(View.VISIBLE);
-        } else {
-            buyButton.setVisibility(View.GONE);
-        }
-
-        Resources res = getResources();
-        String textBuyButton = String.format(res.getString(R.string.buy_button), totalPrice);
-        buyButton.setText(textBuyButton);
     }
 
     private void initDataset() {
