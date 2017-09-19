@@ -81,7 +81,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
             regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
             regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
         } else {
-            regionViewHolder.selectedIconLayout.setVisibility(View.INVISIBLE);
+            regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
             regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
         }
     }

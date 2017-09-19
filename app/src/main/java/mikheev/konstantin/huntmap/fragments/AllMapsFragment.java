@@ -68,7 +68,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
 
         adapter.clearSelection();
         totalPrice = 0;
-        buyButton.setVisibility(View.INVISIBLE);
+        buyButton.setVisibility(View.GONE);
     }
 
     private void initializeAdapter() {
@@ -92,7 +92,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         if (selectedItemsCount != 0) {
             buyButton.setVisibility(View.VISIBLE);
         } else {
-            buyButton.setVisibility(View.INVISIBLE);
+            buyButton.setVisibility(View.GONE);
         }
 
         Resources res = getResources();
