@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
@@ -20,7 +20,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         CardView regionCardView;
         TextView regionName;
         TextView regionPrice;
-        ImageButton regionSelectButton;
+        ImageView regionSelectButton;
         LinearLayout selectedIconLayout;
         LinearLayout rootLayout;
         private ClickListener listener;
@@ -31,7 +31,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
             regionCardView = (CardView) itemView.findViewById(R.id.regionCardView);
             regionName = (TextView) itemView.findViewById(R.id.region_name);
             regionPrice = (TextView) itemView.findViewById(R.id.region_price);
-            regionSelectButton = (ImageButton) itemView.findViewById(R.id.select_image_button);
+            regionSelectButton = (ImageView) itemView.findViewById(R.id.select_image_button);
             selectedIconLayout = (LinearLayout) itemView.findViewById(R.id.selected_icon_layout);
             rootLayout = (LinearLayout) itemView.findViewById(R.id.root_layout);
 
