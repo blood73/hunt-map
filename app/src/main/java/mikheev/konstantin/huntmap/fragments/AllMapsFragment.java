@@ -36,7 +36,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_all_maps, container, false);
 
-        rvRegions = (RecyclerView) rootView.findViewById(R.id.recyclerViewRegions);
+        rvRegions = (RecyclerView) rootView.findViewById(R.id.rv_all_maps);
         buyButton = (Button) rootView.findViewById(R.id.buy_button);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

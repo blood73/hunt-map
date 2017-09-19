@@ -10,4 +10,7 @@
     <string name="price_rub">\u0020руб.</string>
     <string name="buy_button">Купить за %1$d рублей</string>
     <string name="buy_button_pressed">Вы купили на %1$d рублей</string>
+    <string name="map_name">Название карты</string>
+    <string name="date_end">Дата окончания</string>
+    <string name="prolong">Продлить</string>
 </resources>

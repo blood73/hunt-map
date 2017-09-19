@@ -17,4 +17,9 @@
     <dimen name="region_price_margin_top">-8dp</dimen>
     <dimen name="select_image_button_width">16dp</dimen>
     <dimen name="buy_button_text_size">16sp</dimen>
+    <dimen name="table_header_text_size">12sp</dimen>
+    <dimen name="table_header_line_spacing_extra">4sp</dimen>
+    <dimen name="table_header_top_padding">32dp</dimen>
+    <dimen name="table_header_left_padding">16dp</dimen>
+    <dimen name="table_header_right_padding">30dp</dimen>
 </resources>

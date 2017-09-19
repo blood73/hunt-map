@@ -9,4 +9,5 @@
     <color name="white">#fff</color>
     <color name="selectedRegionBackground">#f9f9f9</color>
     <color name="unselectedRegionBackground">#fff</color>
+    <color name="textTableHeader">#a9a9a9</color>
 </resources>
