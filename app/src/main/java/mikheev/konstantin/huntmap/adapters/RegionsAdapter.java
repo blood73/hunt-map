@@ -97,7 +97,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
 
     public void disableBoughtRegions() {
         for (Integer i : getSelectedItems()) {
-            regionItems.get(i).disableRegion();
+            regionItems.get(i).setIsActive(false);
             notifyItemChanged(i);
         }
     }

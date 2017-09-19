@@ -30,10 +30,11 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_my_maps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/table_header"
-        android:id="@+id/rv_my_maps"
+        android:layout_alignStart="@+id/table_header"
         tools:listitem="@layout/my_map_item" />
 
 </RelativeLayout>
