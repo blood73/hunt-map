@@ -1,16 +1,20 @@
 package mikheev.konstantin.huntmap;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import java.util.List;
 import mikheev.konstantin.huntmap.adapters.MyViewPagerAdapter;
+import mikheev.konstantin.huntmap.fragments.AllMapsFragment;
+import mikheev.konstantin.huntmap.fragments.MyMapsFragment;
+import mikheev.konstantin.huntmap.models.RegionItem;
 
-public class MapsActivity extends AppCompatActivity {
+public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener {
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
@@ -37,6 +41,14 @@ public class MapsActivity extends AppCompatActivity {
 
     }
 
+    public void onBuyButtonClicked(List<RegionItem> regionItemListFromFragment) {
+        /*List<Fragment> allFragments = getSupportFragmentManager().getFragments();
+        for (Fragment fragment: allFragments) {
+            if (fragment instanceof MyMapsFragment){
+                ((MyMapsFragment) fragment).updateMyMapsItems(regionItemListFromFragment);
+            }
+        }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

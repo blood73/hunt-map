@@ -42,4 +42,8 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
         }
         return null;
     }
+
+    public static String makeFragmentName(int viewId, long id) {
+        return "android:switcher:" + viewId + ":" + id;
+    }
 }

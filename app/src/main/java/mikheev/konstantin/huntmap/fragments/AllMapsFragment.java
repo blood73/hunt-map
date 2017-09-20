@@ -1,5 +1,7 @@
 package mikheev.konstantin.huntmap.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -25,6 +27,11 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private RegionsAdapter adapter;
     private Button buyButton;
     private int totalPrice = 0;
+    OnBuyButtonClickedListener buButtonListener;
+
+    public interface OnBuyButtonClickedListener {
+        public void onBuyButtonClicked(List<RegionItem> regionItemList);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,12 +67,28 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            buButtonListener = (OnBuyButtonClickedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnBuyButtonClickedListener");
+        }
+    }
+
     private void clickBuyButton() {
         Resources res = getResources();
 
         String textBuyResult = String.format(res.getString(R.string.buy_button_pressed), totalPrice);
         Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
         toast.show();
+
+        buButtonListener.onBuyButtonClicked(adapter.getRegionItems());
 
         adapter.disableBoughtRegions();
         adapter.clearSelection();

@@ -100,4 +100,8 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
             notifyItemChanged(i);
         }
     }
+
+    public List<RegionItem> getRegionItems() {
+        return regionItems;
+    }
 }

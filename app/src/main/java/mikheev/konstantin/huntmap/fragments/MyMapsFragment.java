@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
      private void initializeAdapter() {
         adapter = new MyRegionsAdapter(regionItems, this);
         rvRegions.setAdapter(adapter);
-    }
+     }
 
     private void initDataset() {
         regionItems = new ArrayList<>();
@@ -130,5 +131,9 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
         regionItems.add(regionItem10);
         regionItems.add(regionItem11);
         regionItems.add(regionItem12);
+    }
+
+    public void updateMyMapsItems(List<RegionItem> newRegionItems) {
+        regionItems = newRegionItems;
     }
 }
