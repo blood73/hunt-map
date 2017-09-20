@@ -12,20 +12,20 @@ import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
 
-public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewHolder> {
+public class MyRegionsAdapter extends SelectableAdapter<MyRegionsAdapter.MyRegionViewHolder> {
 
-    public static class RegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyRegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private static final String TAG = RegionViewHolder.class.getSimpleName();
+        private static final String TAG = MyRegionsAdapter.MyRegionViewHolder.class.getSimpleName();
         CardView regionCardView;
         TextView regionName;
         TextView regionPrice;
         ImageView regionSelectButton;
         LinearLayout selectedIconLayout;
         LinearLayout rootLayout;
-        private ClickListener listener;
+        private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
 
-        RegionViewHolder(View itemView, ClickListener listener) {
+        MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
             super(itemView);
 
             regionCardView = (CardView) itemView.findViewById(R.id.regionCardView);
@@ -52,9 +52,9 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     }
 
     private List<RegionItem> regionItems;
-    private RegionViewHolder.ClickListener clickListener;
+    private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
 
-    public RegionsAdapter(List<RegionItem> regionItems, RegionViewHolder.ClickListener clickListener) {
+    public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
         this.regionItems = regionItems;
         this.clickListener = clickListener;
     }
@@ -65,27 +65,26 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     }
 
     @Override
-    public RegionViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.region_item, viewGroup, false);
-        return new RegionViewHolder(v, clickListener);
+    public MyRegionsAdapter.MyRegionViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_map_item, viewGroup, false);
+        return new MyRegionsAdapter.MyRegionViewHolder(v, clickListener);
     }
 
     @Override
-    public void onBindViewHolder(RegionViewHolder regionViewHolder, int position) {
-        regionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
-        regionViewHolder.regionPrice.setText(Integer.toString(regionItems.get(position).getRegionPrice()));
+    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder MyRegionViewHolder, int position) {
+        MyRegionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
 
         if (regionItems.get(position).getIsBought()) {
             if (isSelected(position)) {
-                regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
-                regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
+                MyRegionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
+                MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
             } else {
-                regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-                regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
+                MyRegionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+                MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
             }
         } else {
-            regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-            regionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
+            MyRegionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+            MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
         }
     }
 

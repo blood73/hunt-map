@@ -22,4 +22,6 @@
     <dimen name="table_header_top_padding">32dp</dimen>
     <dimen name="table_header_left_padding">16dp</dimen>
     <dimen name="table_header_right_padding">30dp</dimen>
+    <dimen name="table_header_bottom_padding">15.5dp</dimen>
+    <dimen name="region_date_text_size">14sp</dimen>
 </resources>

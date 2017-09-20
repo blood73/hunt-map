@@ -27,34 +27,9 @@
                     android:id="@+id/region_name"
                     style="@style/TextAppearanceRegionName"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/region_name_height"
+                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     tools:text="@string/default_region_name" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/region_price"
-                        style="@style/TextAppearanceRegionPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/region_price_height"
-                        android:layout_marginTop="@dimen/region_price_margin_top"
-                        android:gravity="center_vertical"
-                        tools:text="@string/default_region_price" />
-
-                    <TextView
-                        style="@style/TextAppearanceRegionPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/region_price_height"
-                        android:layout_marginTop="@dimen/region_price_margin_top"
-                        android:gravity="center_vertical"
-                        tools:text="@string/price_rub"
-                        android:text="@string/price_rub"/>
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -62,19 +37,16 @@
                 android:id="@+id/selected_icon_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="end"
                 android:paddingEnd="@dimen/region_item_right_padding"
                 android:paddingStart="@dimen/region_item_right_padding"
-                android:visibility="invisible">
+                android:visibility="visible">
 
-                <ImageView
-                    android:id="@+id/select_image_button"
-                    android:layout_width="@dimen/select_image_button_width"
-                    android:scaleType="centerInside"
-                    android:layout_height="@dimen/select_image_button_width"
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/select_button_description"
-                    android:src="@drawable/i_o" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    tools:text="11 апр. ‘ 17"
+                    style="@style/TextAppearanceRegionDate"/>
 
             </LinearLayout>
 

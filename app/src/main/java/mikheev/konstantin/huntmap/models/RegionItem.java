@@ -4,7 +4,8 @@ public class RegionItem {
     private int regionId;
     private String regionName;
     private int regionPrice;
-    private boolean isActive;
+    private boolean isBought;
+    private int timestampEnd;
 
     public String getRegionName() {
         return regionName;
@@ -22,12 +23,12 @@ public class RegionItem {
         this.regionPrice = regionPrice;
     }
 
-    public boolean getIsActive() {
-        return isActive;
+    public boolean getIsBought() {
+        return isBought;
     }
 
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setIsBought(boolean isBought) {
+        this.isBought = isBought;
     }
 
     public int getRegionId() {
@@ -36,5 +37,13 @@ public class RegionItem {
 
     public void setRegionId(int regionId) {
         this.regionId = regionId;
+    }
+
+    public int getTimestampEnd() {
+        return timestampEnd;
+    }
+
+    public void setTimestampEnd(int timestampEnd) {
+        this.timestampEnd = timestampEnd;
     }
 }

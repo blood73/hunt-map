@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#58983c</color>
     <color name="colorAccent">#58983c</color>
     <color name="regionNameTextColor">#4c4c4c</color>
+    <color name="regionDateTextColor">#4c4c4c</color>
     <color name="regionPriceTextColor">#a0a0a0</color>
     <color name="buyButtonColor">#4c4c4c</color>
     <color name="white">#fff</color>
@@ -11,4 +12,5 @@
     <color name="unselectedRegionBackground">#fff</color>
     <color name="textTableHeader">#a9a9a9</color>
     <color name="boughtRegionBackground">#e9e9e9</color>
+    <color name="myRegionsDelimiterColor">#e0e0e0</color>
 </resources>
