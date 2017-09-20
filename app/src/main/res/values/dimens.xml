@@ -24,4 +24,8 @@
     <dimen name="table_header_right_padding">30dp</dimen>
     <dimen name="table_header_bottom_padding">15.5dp</dimen>
     <dimen name="region_date_text_size">14sp</dimen>
+    <dimen name="line_spacing_extra_default">18sp</dimen>
+    <dimen name="date_prolongate_width">90dp</dimen>
+    <dimen name="arrow_image_width">32dp</dimen>
+    <dimen name="arrow_image_padding_end">16dp</dimen>
 </resources>

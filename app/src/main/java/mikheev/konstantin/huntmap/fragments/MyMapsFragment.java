@@ -47,7 +47,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
     @Override
     public void onItemClicked(int position) {
-        adapter.toggleSelection(position);
+        //TODO: click logic
     }
 
      private void initializeAdapter() {

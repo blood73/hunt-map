@@ -12,7 +12,7 @@ import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
 
-public class MyRegionsAdapter extends SelectableAdapter<MyRegionsAdapter.MyRegionViewHolder> {
+public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRegionViewHolder>{
 
     public static class MyRegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -75,16 +75,9 @@ public class MyRegionsAdapter extends SelectableAdapter<MyRegionsAdapter.MyRegio
         MyRegionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
 
         if (regionItems.get(position).getIsBought()) {
-            if (isSelected(position)) {
-                MyRegionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
-                MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
-            } else {
-                MyRegionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-                MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
-            }
+
         } else {
-            MyRegionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-            MyRegionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
+
         }
     }
 
@@ -93,10 +86,4 @@ public class MyRegionsAdapter extends SelectableAdapter<MyRegionsAdapter.MyRegio
         return regionItems != null ? regionItems.size() : 0;
     }
 
-    public void disableBoughtRegions() {
-        for (Integer i : getSelectedItems()) {
-            regionItems.get(i).setIsBought(false);
-            notifyItemChanged(i);
-        }
-    }
 }

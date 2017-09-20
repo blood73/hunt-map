@@ -17,36 +17,58 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <LinearLayout
-                style="@style/LinearLayoutRegion"
+            <TextView
+                android:id="@+id/region_name"
+                style="@style/TextAppearanceRegionName"
+                android:paddingTop="@dimen/region_item_top_padding"
+                android:paddingBottom="@dimen/region_item_bottom_padding"
+                android:paddingStart="@dimen/region_item_left_padding"
+                android:paddingEnd="@dimen/region_item_right_padding"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                tools:text="@string/default_region_name" />
 
-                <TextView
-                    android:id="@+id/region_name"
-                    style="@style/TextAppearanceRegionName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    tools:text="@string/default_region_name" />
-
-            </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/selected_icon_layout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:paddingEnd="@dimen/region_item_right_padding"
-                android:paddingStart="@dimen/region_item_right_padding"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/date_text"
+                    android:layout_width="@dimen/date_prolongate_width"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     tools:text="11 апр. ‘ 17"
+                    android:visibility="gone"
                     style="@style/TextAppearanceRegionDate"/>
+
+                <TextView
+                    android:id="@+id/prolongate"
+                    android:layout_width="@dimen/date_prolongate_width"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/prolong"
+                    android:textAllCaps="true"
+                    android:visibility="gone"
+                    style="@style/TextAppearanceProlongateText" />
+
+                <ImageView
+                    android:id="@+id/select_map"
+                    android:layout_width="@dimen/arrow_image_width"
+                    android:layout_height="@dimen/arrow_image_width"
+                    android:paddingEnd="@dimen/arrow_image_padding_end"
+                    android:scaleType="centerInside"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/select_map_description"
+                    android:src="@drawable/arrow" />
 
             </LinearLayout>
 
