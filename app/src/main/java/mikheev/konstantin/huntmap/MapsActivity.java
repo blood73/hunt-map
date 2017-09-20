@@ -42,12 +42,8 @@ public class MapsActivity extends AppCompatActivity implements AllMapsFragment.O
     }
 
     public void onBuyButtonClicked(List<RegionItem> regionItemListFromFragment) {
-        /*List<Fragment> allFragments = getSupportFragmentManager().getFragments();
-        for (Fragment fragment: allFragments) {
-            if (fragment instanceof MyMapsFragment){
-                ((MyMapsFragment) fragment).updateMyMapsItems(regionItemListFromFragment);
-            }
-        }*/
+        Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemListFromFragment);
     }
 
     @Override
