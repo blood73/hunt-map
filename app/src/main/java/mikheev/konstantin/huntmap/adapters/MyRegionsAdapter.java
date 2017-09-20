@@ -30,8 +30,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
 
             regionCardView = (CardView) itemView.findViewById(R.id.regionCardView);
             regionName = (TextView) itemView.findViewById(R.id.region_name);
-            regionPrice = (TextView) itemView.findViewById(R.id.region_price);
-            regionSelectButton = (ImageView) itemView.findViewById(R.id.select_image_button);
             selectedIconLayout = (LinearLayout) itemView.findViewById(R.id.selected_icon_layout);
             rootLayout = (LinearLayout) itemView.findViewById(R.id.root_layout);
 
@@ -57,11 +55,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
         this.regionItems = regionItems;
         this.clickListener = clickListener;
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
