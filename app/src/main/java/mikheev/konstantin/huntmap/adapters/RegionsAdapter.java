@@ -16,6 +16,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
 
     public static class RegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+//        неиспользуемая константа
         private static final String TAG = RegionViewHolder.class.getSimpleName();
         CardView regionCardView;
         TextView regionName;
@@ -61,6 +62,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         this.clickListener = clickListener;
     }
 
+//    нет смысла прописывать методы, которые состоят только из вызова super
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);

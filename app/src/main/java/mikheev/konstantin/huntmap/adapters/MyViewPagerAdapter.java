@@ -36,6 +36,7 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
+//                да, вынести в строковые ресурсы)
                 return "Мои карты"; //TODO: getResources().getString(R.string.my_maps);
             case 1:
                 return "Все карты";

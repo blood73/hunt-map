@@ -39,10 +39,12 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         rvRegions = (RecyclerView) rootView.findViewById(R.id.recyclerViewRegions);
         buyButton = (Button) rootView.findViewById(R.id.buy_button);
 
+//        лучше давать пусть более длинные, но более понятные имена переменным
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvRegions.setLayoutManager(llm);
         initializeAdapter();
 
+//        buyButton уже определен 8 строками выше
         Button buyButton = (Button) rootView.findViewById(R.id.buy_button);
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private void clickBuyButton() {
         Resources res = getResources();
 
+//        вместо res можно вызвать getActivity().getString()
         String textBuyResult = String.format(res.getString(R.string.buy_button_pressed), totalPrice);
         Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
         toast.show();
@@ -96,6 +99,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         }
 
         Resources res = getResources();
+        //        вместо res можно вызвать getActivity().getString()
         String textBuyButton = String.format(res.getString(R.string.buy_button), totalPrice);
         buyButton.setText(textBuyButton);
     }

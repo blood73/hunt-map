@@ -6,7 +6,10 @@
     <color name="regionNameTextColor">#4c4c4c</color>
     <color name="regionPriceTextColor">#a0a0a0</color>
     <color name="buyButtonColor">#4c4c4c</color>
+    <!--Стандартные цвета можно брать из ресурсов самого android
+    Смотри комментарий в styles.xml-->
     <color name="white">#fff</color>
     <color name="selectedRegionBackground">#f9f9f9</color>
+    <!--Нет необходимости объявлять снова белый цвет и по-другому его называть-->
     <color name="unselectedRegionBackground">#fff</color>
 </resources>
