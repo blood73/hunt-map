@@ -76,6 +76,9 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         regionViewHolder.regionPrice.setText(Integer.toString(regionItems.get(position).getRegionPrice()));
 
         if (regionItems.get(position).getIsBought()) {
+            regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+            regionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
+        } else {
             if (isSelected(position)) {
                 regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
                 regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
@@ -83,9 +86,6 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
                 regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
                 regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
             }
-        } else {
-            regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
-            regionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
         }
     }
 
@@ -94,9 +94,9 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
         return regionItems != null ? regionItems.size() : 0;
     }
 
-    public void disableBoughtRegions() {
+    public void setIsBoughtRegions() {
         for (Integer i : getSelectedItems()) {
-            regionItems.get(i).setIsBought(false);
+            regionItems.get(i).setIsBought(true);
             notifyItemChanged(i);
         }
     }
