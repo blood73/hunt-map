@@ -1,6 +1,11 @@
 package mikheev.konstantin.huntmap.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class Utils {
 
@@ -18,5 +23,23 @@ public class Utils {
         Random random = new Random();
 
         return LOWER_RANGE +  (long) (random.nextDouble() * (UPPER_RANGE - LOWER_RANGE));
+    }
+
+    public static String getDateFromTimestamp(long timestamp) {
+        String result = "";
+
+        try {
+            Calendar calendar = Calendar.getInstance();
+            TimeZone tz = TimeZone.getDefault();
+            calendar.setTimeInMillis(timestamp * 1000);
+            calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
+            SimpleDateFormat sdf = new SimpleDateFormat("d MMM ''yy", new Locale("ru"));
+            Date currenTimeZone = (Date) calendar.getTime();
+            result = sdf.format(currenTimeZone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

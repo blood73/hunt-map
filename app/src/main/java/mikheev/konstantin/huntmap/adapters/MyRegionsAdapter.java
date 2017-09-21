@@ -8,20 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
+import mikheev.konstantin.huntmap.utils.Utils;
 
 public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRegionViewHolder>{
 
     public static class MyRegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private static final String TAG = MyRegionsAdapter.MyRegionViewHolder.class.getSimpleName();
         CardView regionCardView;
         TextView regionName;
-        TextView regionPrice;
-        ImageView regionSelectButton;
-        LinearLayout selectedIconLayout;
+        TextView prolongateText;
+        TextView dateText;
         LinearLayout rootLayout;
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
 
@@ -30,8 +32,9 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
 
             regionCardView = (CardView) itemView.findViewById(R.id.regionCardView);
             regionName = (TextView) itemView.findViewById(R.id.region_name);
-            selectedIconLayout = (LinearLayout) itemView.findViewById(R.id.selected_icon_layout);
             rootLayout = (LinearLayout) itemView.findViewById(R.id.root_layout);
+            prolongateText = (TextView) itemView.findViewById(R.id.prolongate);
+            dateText = (TextView) itemView.findViewById(R.id.date_text);
 
             this.listener = listener;
             itemView.setOnClickListener(this);
@@ -66,11 +69,14 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     @Override
     public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder MyRegionViewHolder, int position) {
         MyRegionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
+        MyRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItems.get(position).getTimestampEnd()));
 
-        if (regionItems.get(position).getIsBought()) {
-
+        if (regionItems.get(position).getTimestampEnd() >= Utils.getCurrentTimestamp()) {
+            MyRegionViewHolder.dateText.setVisibility(View.VISIBLE);
+            MyRegionViewHolder.prolongateText.setVisibility(View.GONE);
         } else {
-
+            MyRegionViewHolder.dateText.setVisibility(View.GONE);
+            MyRegionViewHolder.prolongateText.setVisibility(View.VISIBLE);
         }
     }
 
