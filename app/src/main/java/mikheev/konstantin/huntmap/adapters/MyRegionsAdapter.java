@@ -5,18 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.utils.Utils;
 
-public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRegionViewHolder>{
+public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRegionViewHolder> {
 
     public static class MyRegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -54,6 +50,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
 
     private List<RegionItem> regionItems;
     private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
+    private static int PROLONGATE_DAYS = 30;
 
     public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
         this.regionItems = regionItems;
@@ -67,9 +64,11 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     }
 
     @Override
-    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder MyRegionViewHolder, int position) {
-        MyRegionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
-        MyRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItems.get(position).getTimestampEnd()));
+    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder MyRegionViewHolder, final int position) {
+        final RegionItem regionItem = regionItems.get(position);
+
+        MyRegionViewHolder.regionName.setText(regionItem.getRegionName());
+        MyRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItem.getTimestampEnd()));
 
         if (regionItems.get(position).getTimestampEnd() >= Utils.getCurrentTimestamp()) {
             MyRegionViewHolder.dateText.setVisibility(View.VISIBLE);
@@ -78,6 +77,15 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
             MyRegionViewHolder.dateText.setVisibility(View.GONE);
             MyRegionViewHolder.prolongateText.setVisibility(View.VISIBLE);
         }
+
+        MyRegionViewHolder.prolongateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                regionItem.setTimestampEnd(Utils.getNewTimestampByAddDays(Utils.getCurrentTimestamp(), PROLONGATE_DAYS));
+                regionItem.setIsBought(true);
+                notifyItemChanged(position);
+            }
+        });
     }
 
     @Override

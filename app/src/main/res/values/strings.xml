@@ -15,4 +15,6 @@
     <string name="prolong">Продлить</string>
     <string name="select_map_description">Выбрать</string>
     <string name="empty_list">Список пуст</string>
+    <string name="open_map">Открытие карты</string>
+    <string name="prolongate_map">Продление</string>
 </resources>

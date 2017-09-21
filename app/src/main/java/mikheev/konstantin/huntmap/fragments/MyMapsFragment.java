@@ -10,12 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.adapters.MyRegionsAdapter;
 import mikheev.konstantin.huntmap.models.RegionItem;
+import mikheev.konstantin.huntmap.utils.Utils;
 
 public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegionViewHolder.ClickListener {
 
@@ -54,7 +56,11 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
     @Override
     public void onItemClicked(int position) {
-        //TODO: click logic
+        RegionItem regionItem = regionItems.get(position);
+        if (regionItem.getTimestampEnd() > Utils.getCurrentTimestamp()) {
+            Toast toast = Toast.makeText(getActivity(), getActivity().getString(R.string.open_map), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
      private void initializeAdapter() {

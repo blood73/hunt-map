@@ -9,8 +9,9 @@ import java.util.TimeZone;
 
 public class Utils {
 
+    private static int SECONDS_IN_DAY = 60 * 60 * 24;
     private static int DAYS_PERIOD = 20;
-    private static int SECONDS_PERIOD = DAYS_PERIOD * 60 * 60 * 24;
+    private static int SECONDS_PERIOD = DAYS_PERIOD * SECONDS_IN_DAY;
 
     public static Long getCurrentTimestamp() {
         return System.currentTimeMillis() / 1000;
@@ -41,5 +42,9 @@ public class Utils {
         }
 
         return result;
+    }
+
+    public static long getNewTimestampByAddDays(long timestamp, int days) {
+        return timestamp + days * SECONDS_IN_DAY;
     }
 }
