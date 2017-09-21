@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
+import mikheev.konstantin.huntmap.utils.Utils;
 
 public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewHolder> {
 
@@ -96,8 +97,11 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
 
     public void setIsBoughtRegions() {
         for (Integer i : getSelectedItems()) {
-            regionItems.get(i).setIsBought(true);
-            //TODO: generate timestamp end
+            RegionItem regionItem = regionItems.get(i);
+            regionItem.setIsBought(true);
+            Long generatedTimestamp = Utils.getGeneratedTimestamp();
+            regionItem.setTimestampEnd(generatedTimestamp);
+
             notifyItemChanged(i);
         }
     }

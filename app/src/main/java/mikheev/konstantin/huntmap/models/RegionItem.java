@@ -5,7 +5,7 @@ public class RegionItem {
     private String regionName;
     private int regionPrice;
     private boolean isBought;
-    private int timestampEnd;
+    private long timestampEnd;
 
     public String getRegionName() {
         return regionName;
@@ -39,11 +39,11 @@ public class RegionItem {
         this.regionId = regionId;
     }
 
-    public int getTimestampEnd() {
+    public long getTimestampEnd() {
         return timestampEnd;
     }
 
-    public void setTimestampEnd(int timestampEnd) {
+    public void setTimestampEnd(long timestampEnd) {
         this.timestampEnd = timestampEnd;
     }
 }
