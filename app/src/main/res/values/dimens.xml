@@ -28,4 +28,5 @@
     <dimen name="date_prolongate_width">90dp</dimen>
     <dimen name="arrow_image_width">32dp</dimen>
     <dimen name="arrow_image_padding_end">16dp</dimen>
+    <dimen name="delete_button_width">64dp</dimen>
 </resources>

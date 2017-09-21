@@ -17,4 +17,5 @@
     <string name="empty_list">Список пуст</string>
     <string name="open_map">Открытие карты</string>
     <string name="prolongate_map">Продление</string>
+    <string name="delete_button">Удалить</string>
 </resources>
