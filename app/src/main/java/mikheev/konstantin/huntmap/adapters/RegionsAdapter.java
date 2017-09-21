@@ -97,6 +97,7 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     public void setIsBoughtRegions() {
         for (Integer i : getSelectedItems()) {
             regionItems.get(i).setIsBought(true);
+            //TODO: generate timestamp end
             notifyItemChanged(i);
         }
     }

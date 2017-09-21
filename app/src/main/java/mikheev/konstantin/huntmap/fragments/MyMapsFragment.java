@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
@@ -20,6 +22,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     private List<RegionItem> regionItems;
     private RecyclerView rvRegions;
     private MyRegionsAdapter adapter;
+    private TextView emptyTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
         View rootView = inflater.inflate(R.layout.fragment_my_maps, container, false);
 
         rvRegions = (RecyclerView) rootView.findViewById(R.id.rv_my_maps);
+        emptyTextView = (TextView) rootView.findViewById(R.id.empty_view);
+
+        updateEmptyViewState();
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvRegions.setLayoutManager(llm);
@@ -68,6 +74,15 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
             }
         }
 
+        updateEmptyViewState();
         adapter.notifyDataSetChanged();
+    }
+
+    private void updateEmptyViewState() {
+        if (regionItems.isEmpty()) {
+            emptyTextView.setVisibility(View.VISIBLE);
+        } else {
+            emptyTextView.setVisibility(View.GONE);
+        }
     }
 }

@@ -21,4 +21,12 @@
         android:id="@+id/rv_all_maps"
         tools:listitem="@layout/region_item" />
 
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/empty_list" />
+
 </RelativeLayout>

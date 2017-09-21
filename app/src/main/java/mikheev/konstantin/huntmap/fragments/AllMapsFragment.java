@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private Button buyButton;
     private int totalPrice = 0;
     OnBuyButtonClickedListener buButtonListener;
+    private TextView emptyTextView;
 
     public interface OnBuyButtonClickedListener {
         public void onBuyButtonClicked(List<RegionItem> regionItemList);
@@ -46,6 +48,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
 
         rvRegions = (RecyclerView) rootView.findViewById(R.id.rv_all_maps);
         buyButton = (Button) rootView.findViewById(R.id.buy_button);
+        emptyTextView = (TextView) rootView.findViewById(R.id.empty_view);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvRegions.setLayoutManager(llm);
@@ -58,6 +61,8 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
                 clickBuyButton();
             }
         });
+
+        updateEmptyViewState();
 
         return rootView;
     }
@@ -205,5 +210,13 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         regionItems.add(regionItem10);
         regionItems.add(regionItem11);
         regionItems.add(regionItem12);
+    }
+
+    private void updateEmptyViewState() {
+        if (regionItems.isEmpty()) {
+            emptyTextView.setVisibility(View.VISIBLE);
+        } else {
+            emptyTextView.setVisibility(View.GONE);
+        }
     }
 }
