@@ -88,13 +88,12 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
         toast.show();
 
-        buButtonListener.onBuyButtonClicked(adapter.getRegionItems());
-
         adapter.setIsBoughtRegions();
         adapter.clearSelection();
 
         totalPrice = 0;
         buyButton.setVisibility(View.GONE);
+        buButtonListener.onBuyButtonClicked(adapter.getRegionItems());
     }
 
     private void initializeAdapter() {
