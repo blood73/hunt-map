@@ -64,21 +64,21 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     }
 
     @Override
-    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder MyRegionViewHolder, final int position) {
+    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder myRegionViewHolder, final int position) {
         final RegionItem regionItem = regionItems.get(position);
 
-        MyRegionViewHolder.regionName.setText(regionItem.getRegionName());
-        MyRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItem.getTimestampEnd()));
+        myRegionViewHolder.regionName.setText(regionItem.getRegionName());
+        myRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItem.getTimestampEnd()));
 
         if (regionItems.get(position).getTimestampEnd() >= Utils.getCurrentTimestamp()) {
-            MyRegionViewHolder.dateText.setVisibility(View.VISIBLE);
-            MyRegionViewHolder.prolongateText.setVisibility(View.GONE);
+            myRegionViewHolder.dateText.setVisibility(View.VISIBLE);
+            myRegionViewHolder.prolongateText.setVisibility(View.GONE);
         } else {
-            MyRegionViewHolder.dateText.setVisibility(View.GONE);
-            MyRegionViewHolder.prolongateText.setVisibility(View.VISIBLE);
+            myRegionViewHolder.dateText.setVisibility(View.GONE);
+            myRegionViewHolder.prolongateText.setVisibility(View.VISIBLE);
         }
 
-        MyRegionViewHolder.prolongateText.setOnClickListener(new View.OnClickListener() {
+        myRegionViewHolder.prolongateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 regionItem.setTimestampEnd(Utils.getNewTimestampByAddDays(Utils.getCurrentTimestamp(), PROLONGATE_DAYS));
