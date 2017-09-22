@@ -29,10 +29,14 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private int totalPrice = 0;
     OnBuyButtonClickedListener buButtonListener;
     private TextView emptyTextView;
-    private MapsActivity.MapsInterface mapsInterface;
+    private MapsInterface mapsInterface;
 
     public interface OnBuyButtonClickedListener {
         void onBuyButtonClicked(List<RegionItem> regionItemList);
+    }
+
+    public interface MapsInterface {
+        List<RegionItem> getAllMaps();
     }
 
     @Override
@@ -85,7 +89,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         }
 
         try {
-            mapsInterface = (MapsActivity.MapsInterface) context;
+            mapsInterface = (MapsInterface) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement MapsInterface");
@@ -97,6 +101,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         super.onStart();
         regionItems = mapsInterface.getAllMaps();
         adapter.setRegionItems(regionItems);
+        updateEmptyViewState();
     }
 
     private void clickBuyButton() {

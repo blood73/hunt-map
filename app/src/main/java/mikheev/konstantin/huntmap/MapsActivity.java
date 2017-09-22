@@ -15,17 +15,13 @@ import mikheev.konstantin.huntmap.fragments.MyMapsFragment;
 import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.models.RegionItemsMap;
 
-public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener, MapsActivity.MapsInterface {
+public class MapsActivity extends AppCompatActivity
+        implements AllMapsFragment.OnBuyButtonClickedListener, AllMapsFragment.MapsInterface {
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
-    private List<RegionItem> allRegionItems;
     private RegionItemsMap allRegionItemsMap;
     private RegionItemsMap myRegionItemsMap;
-
-    public interface MapsInterface {
-        List<RegionItem> getAllMaps();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +55,7 @@ public class MapsActivity extends AppCompatActivity implements AllMapsFragment.O
     }
 
     public List<RegionItem> getAllMaps() {
-        return allRegionItems;
+        return allRegionItemsMap.getRegionItemsList();
     }
 
     @Override
