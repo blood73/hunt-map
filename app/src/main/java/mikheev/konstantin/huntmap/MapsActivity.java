@@ -20,15 +20,13 @@ public class MapsActivity extends AppCompatActivity
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
-    private RegionItemsMap allRegionItemsMap;
-    private RegionItemsMap myRegionItemsMap;
+    private RegionItemsMap regionItemsMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initDatasetAllMaps();
-        initDatasetMyMaps();
+        initDatasetMaps();
 
         setContentView(R.layout.activity_maps);
 
@@ -50,22 +48,22 @@ public class MapsActivity extends AppCompatActivity
     }
 
     public List<RegionItem> getAllMaps() {
-        return allRegionItemsMap.getRegionItemsList();
+        return regionItemsMap.getMapsList();
     }
 
     public List<RegionItem> getMyMaps() {
-        return myRegionItemsMap.getRegionItemsList();
+        return regionItemsMap.getBoughtMapsList();
     }
 
     public void addToMyMaps(List<RegionItem> regionItemListFromFragment) {
         for (RegionItem regionItem : regionItemListFromFragment) {
             if (regionItem != null && regionItem.getIsBought()) {
-                myRegionItemsMap.addRegionItem(regionItem.getRegionId(), regionItem);
+                regionItemsMap.addRegionItem(regionItem.getRegionId(), regionItem);
             }
         }
 
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
-        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(myRegionItemsMap.getRegionItemsList());
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
     }
 
     @Override
@@ -90,7 +88,7 @@ public class MapsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void initDatasetAllMaps() {
+    private void initDatasetMaps() {
         RegionItem regionItem1 = new RegionItem();
         regionItem1.setRegionName("Нижегородская обл.");
         regionItem1.setRegionPrice(366);
@@ -151,22 +149,18 @@ public class MapsActivity extends AppCompatActivity
         regionItem12.setRegionPrice(374);
         regionItem12.setIsBought(false);
 
-        allRegionItemsMap = new RegionItemsMap();
-        allRegionItemsMap.addRegionItem(1, regionItem1);
-        allRegionItemsMap.addRegionItem(2, regionItem2);
-        allRegionItemsMap.addRegionItem(3, regionItem3);
-        allRegionItemsMap.addRegionItem(4, regionItem4);
-        allRegionItemsMap.addRegionItem(5, regionItem5);
-        allRegionItemsMap.addRegionItem(6, regionItem6);
-        allRegionItemsMap.addRegionItem(7, regionItem7);
-        allRegionItemsMap.addRegionItem(8, regionItem8);
-        allRegionItemsMap.addRegionItem(9, regionItem9);
-        allRegionItemsMap.addRegionItem(10, regionItem10);
-        allRegionItemsMap.addRegionItem(11, regionItem11);
-        allRegionItemsMap.addRegionItem(12, regionItem12);
-    }
-
-    private void initDatasetMyMaps() {
-        myRegionItemsMap = new RegionItemsMap();
+        regionItemsMap = new RegionItemsMap();
+        regionItemsMap.addRegionItem(1, regionItem1);
+        regionItemsMap.addRegionItem(2, regionItem2);
+        regionItemsMap.addRegionItem(3, regionItem3);
+        regionItemsMap.addRegionItem(4, regionItem4);
+        regionItemsMap.addRegionItem(5, regionItem5);
+        regionItemsMap.addRegionItem(6, regionItem6);
+        regionItemsMap.addRegionItem(7, regionItem7);
+        regionItemsMap.addRegionItem(8, regionItem8);
+        regionItemsMap.addRegionItem(9, regionItem9);
+        regionItemsMap.addRegionItem(10, regionItem10);
+        regionItemsMap.addRegionItem(11, regionItem11);
+        regionItemsMap.addRegionItem(12, regionItem12);
     }
 }

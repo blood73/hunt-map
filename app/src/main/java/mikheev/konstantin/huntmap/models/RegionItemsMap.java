@@ -17,11 +17,23 @@ public class RegionItemsMap extends SparseArray<RegionItem> {
         this.remove(regionId);
     }
 
-    public List<RegionItem> getRegionItemsList() {
+    public List<RegionItem> getMapsList() {
         List<RegionItem> regionItemsList = new ArrayList<>();
 
         for(int i = 0; i < this.size(); i++) {
             regionItemsList.add(this.valueAt(i));
+        }
+
+        return regionItemsList;
+    }
+
+    public List<RegionItem> getBoughtMapsList() {
+        List<RegionItem> regionItemsList = new ArrayList<>();
+
+        for(int i = 0; i < this.size(); i++) {
+            if (this.valueAt(i).getIsBought()) {
+                regionItemsList.add(this.valueAt(i));
+            }
         }
 
         return regionItemsList;
