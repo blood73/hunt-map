@@ -20,11 +20,14 @@ public class MapsActivity extends AppCompatActivity implements AllMapsFragment.O
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
     private RegionItemsMap allRegionItemsMap;
+    private RegionItemsMap myRegionItemsMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initDatasetAllMaps();
+        initDatasetMyMaps();
 
         setContentView(R.layout.activity_maps);
 
@@ -146,5 +149,9 @@ public class MapsActivity extends AppCompatActivity implements AllMapsFragment.O
         allRegionItemsMap.addRegionItem(10, regionItem10);
         allRegionItemsMap.addRegionItem(11, regionItem11);
         allRegionItemsMap.addRegionItem(12, regionItem12);
+    }
+
+    private void initDatasetMyMaps() {
+        myRegionItemsMap = new RegionItemsMap();
     }
 }
