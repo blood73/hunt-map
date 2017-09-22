@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.daimajia.swipe.SwipeLayout;
+
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
@@ -23,8 +26,10 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         TextView dateText;
         LinearLayout rootLayout;
         ImageView deleteImageButton;
+        SwipeLayout swipeLayout;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
+        private boolean isItemOpened;
 
         MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
             super(itemView);
@@ -35,14 +40,50 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
             prolongateText = (TextView) itemView.findViewById(R.id.prolongate);
             dateText = (TextView) itemView.findViewById(R.id.date_text);
             deleteImageButton = (ImageView) itemView.findViewById(R.id.delete_button);
+            swipeLayout =  (SwipeLayout) itemView.findViewById(R.id.swipe_layout);
 
             this.listener = listener;
             itemView.setOnClickListener(this);
+
+            swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
+                @Override
+                public void onClose(SwipeLayout layout) {
+                    //when the SurfaceView totally cover the BottomView.
+                    isItemOpened = false;
+                }
+
+                @Override
+                public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
+                    //you are swiping.
+                    isItemOpened = true;
+                }
+
+                @Override
+                public void onStartOpen(SwipeLayout layout) {
+                    isItemOpened = true;
+                }
+
+                @Override
+                public void onOpen(SwipeLayout layout) {
+                    //when the BottomView totally show.
+                    isItemOpened = true;
+                }
+
+                @Override
+                public void onStartClose(SwipeLayout layout) {
+                    isItemOpened = true;
+                }
+
+                @Override
+                public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
+                    //when user's hand released.
+                }
+            });
         }
 
         @Override
         public void onClick(View v) {
-            if (listener != null) {
+            if (listener != null && !isItemOpened) {
                 listener.onItemClicked(getAdapterPosition());
             }
         }
