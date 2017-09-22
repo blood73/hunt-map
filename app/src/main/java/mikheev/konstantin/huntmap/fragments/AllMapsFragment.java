@@ -15,12 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-
 import mikheev.konstantin.huntmap.MapsActivity;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.adapters.RegionsAdapter;
 import mikheev.konstantin.huntmap.models.RegionItem;
-import mikheev.konstantin.huntmap.models.RegionItemsMap;
 
 public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionViewHolder.ClickListener {
 
@@ -32,7 +30,6 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     OnBuyButtonClickedListener buButtonListener;
     private TextView emptyTextView;
     private MapsActivity.MapsInterface mapsInterface;
-    private RegionItemsMap regionItemsMap = new RegionItemsMap();
 
     public interface OnBuyButtonClickedListener {
         void onBuyButtonClicked(List<RegionItem> regionItemList);
@@ -91,15 +88,15 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
             mapsInterface = (MapsActivity.MapsInterface) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
-                    + " must implement MyInterface");
+                    + " must implement MapsInterface");
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        regionItemsMap = mapsInterface.getAllMaps();
-        regionItems = regionItemsMap.getRegionItemsList();
+        regionItems = mapsInterface.getAllMaps();
+        adapter.setRegionItems(regionItems);
     }
 
     private void clickBuyButton() {

@@ -109,4 +109,11 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     public List<RegionItem> getRegionItems() {
         return regionItems;
     }
+
+    public void setRegionItems(List<RegionItem> regionItems) {
+        this.regionItems.clear();
+        this.regionItems.addAll(regionItems);
+        notifyDataSetChanged();
+    }
+
 }
