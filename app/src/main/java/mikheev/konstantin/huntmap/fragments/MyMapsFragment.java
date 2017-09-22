@@ -1,5 +1,6 @@
 package mikheev.konstantin.huntmap.fragments;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,12 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     private RecyclerView rvRegions;
     private MyRegionsAdapter adapter;
     private TextView emptyTextView;
+    private MyMapsInterface myMapsInterface;
+
+    public interface MyMapsInterface {
+        List<RegionItem> getMyMaps();
+        void addToMyMaps(List<RegionItem> regionItemList);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +55,28 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        regionItems = myMapsInterface.getMyMaps();
+        adapter.setRegionItems(regionItems);
+        updateEmptyViewState();
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            myMapsInterface = (MyMapsInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement MapsInterface");
+        }
     }
 
     @Override
@@ -72,14 +99,16 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
     public void updateMyMapsItems(List<RegionItem> newRegionItems) {
 
+        regionItems = myMapsInterface.getMyMaps();
         for (RegionItem regionItem : newRegionItems) {
             if (regionItem != null && regionItem.getIsBought() && !regionItems.contains(regionItem)) {
                 regionItems.add(regionItem);
             }
         }
 
-        updateEmptyViewState();
+        adapter.setRegionItems(regionItems);
         adapter.notifyDataSetChanged();
+        updateEmptyViewState();
     }
 
     private void updateEmptyViewState() {

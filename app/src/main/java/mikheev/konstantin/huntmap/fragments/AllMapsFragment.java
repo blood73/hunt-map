@@ -26,15 +26,11 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private RegionsAdapter adapter;
     private Button buyButton;
     private int totalPrice = 0;
-    OnBuyButtonClickedListener buyButtonListener;
     private TextView emptyTextView;
-    private MapsInterface mapsInterface;
+    private AllMapsInterface allMapsInterface;
+    private MyMapsFragment.MyMapsInterface myMapsInterface;
 
-    public interface OnBuyButtonClickedListener {
-        void onBuyButtonClicked(List<RegionItem> regionItemList);
-    }
-
-    public interface MapsInterface {
+    public interface AllMapsInterface {
         List<RegionItem> getAllMaps();
     }
 
@@ -78,27 +74,25 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
         try {
-            buyButtonListener = (OnBuyButtonClickedListener) context;
+            allMapsInterface = (AllMapsInterface) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
-                    + " must implement OnBuyButtonClickedListener");
+                    + " must implement AllMapsInterface");
         }
 
         try {
-            mapsInterface = (MapsInterface) context;
+            myMapsInterface = (MyMapsFragment.MyMapsInterface) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
-                    + " must implement MapsInterface");
+                    + " must implement MyMapsInterface");
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        regionItems = mapsInterface.getAllMaps();
+        regionItems = allMapsInterface.getAllMaps();
         adapter.setRegionItems(regionItems);
         updateEmptyViewState();
     }
@@ -115,7 +109,8 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
 
         totalPrice = 0;
         buyButton.setVisibility(View.GONE);
-        buyButtonListener.onBuyButtonClicked(adapter.getRegionItems());
+
+        myMapsInterface.addToMyMaps(adapter.getRegionItems());
     }
 
     private void initializeAdapter() {

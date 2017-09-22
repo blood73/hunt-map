@@ -16,7 +16,7 @@ import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.models.RegionItemsMap;
 
 public class MapsActivity extends AppCompatActivity
-        implements AllMapsFragment.OnBuyButtonClickedListener, AllMapsFragment.MapsInterface {
+        implements AllMapsFragment.AllMapsInterface, MyMapsFragment.MyMapsInterface {
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
@@ -49,13 +49,22 @@ public class MapsActivity extends AppCompatActivity
 
     }
 
-    public void onBuyButtonClicked(List<RegionItem> regionItemListFromFragment) {
-        Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
-        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemListFromFragment);
-    }
-
     public List<RegionItem> getAllMaps() {
         return allRegionItemsMap.getRegionItemsList();
+    }
+
+    public List<RegionItem> getMyMaps() {
+        return myRegionItemsMap.getRegionItemsList();
+    }
+
+    public void addToMyMaps(List<RegionItem> regionItemListFromFragment) {
+        for (RegionItem regionItem : regionItemListFromFragment) {
+            if (regionItem != null && regionItem.getIsBought() && !regionItemListFromFragment.contains(regionItem)) {
+                myRegionItemsMap.addRegionItem(regionItem.getRegionId(), regionItem);
+            }
+        }
+        Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(myRegionItemsMap.getRegionItemsList());
     }
 
     @Override

@@ -146,4 +146,9 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         return regionItems != null ? regionItems.size() : 0;
     }
 
+    public void setRegionItems(List<RegionItem> newRegionItems) {
+        this.regionItems.clear();
+        this.regionItems.addAll(newRegionItems);
+        notifyDataSetChanged();
+    }
 }
