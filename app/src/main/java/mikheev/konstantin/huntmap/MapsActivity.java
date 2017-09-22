@@ -59,10 +59,11 @@ public class MapsActivity extends AppCompatActivity
 
     public void addToMyMaps(List<RegionItem> regionItemListFromFragment) {
         for (RegionItem regionItem : regionItemListFromFragment) {
-            if (regionItem != null && regionItem.getIsBought() && !regionItemListFromFragment.contains(regionItem)) {
+            if (regionItem != null && regionItem.getIsBought()) {
                 myRegionItemsMap.addRegionItem(regionItem.getRegionId(), regionItem);
             }
         }
+
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
         ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(myRegionItemsMap.getRegionItemsList());
     }
