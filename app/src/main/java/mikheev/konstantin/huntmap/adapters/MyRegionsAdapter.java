@@ -1,6 +1,5 @@
 package mikheev.konstantin.huntmap.adapters;
 
-import android.media.Image;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.chauthai.swipereveallayout.SwipeRevealLayout;
-import com.chauthai.swipereveallayout.ViewBinderHelper;
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
@@ -25,7 +22,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         TextView prolongateText;
         TextView dateText;
         LinearLayout rootLayout;
-        SwipeRevealLayout swipeRevealLayout;
         ImageView deleteImageButton;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
@@ -38,7 +34,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
             rootLayout = (LinearLayout) itemView.findViewById(R.id.root_layout);
             prolongateText = (TextView) itemView.findViewById(R.id.prolongate);
             dateText = (TextView) itemView.findViewById(R.id.date_text);
-            swipeRevealLayout = (SwipeRevealLayout) itemView.findViewById(R.id.swipe_layout);
             deleteImageButton = (ImageView) itemView.findViewById(R.id.delete_button);
 
             this.listener = listener;
@@ -60,7 +55,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     private List<RegionItem> regionItems;
     private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
     private static int PROLONGATE_DAYS = 30;
-    private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
     public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
         this.regionItems = regionItems;
@@ -76,8 +70,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     @Override
     public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder myRegionViewHolder, final int position) {
         final RegionItem regionItem = regionItems.get(position);
-
-        viewBinderHelper.bind(myRegionViewHolder.swipeRevealLayout, regionItem.getRegionName());
 
         myRegionViewHolder.regionName.setText(regionItem.getRegionName());
         myRegionViewHolder.dateText.setText(Utils.getDateFromTimestamp(regionItem.getTimestampEnd()));
