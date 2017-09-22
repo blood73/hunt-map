@@ -29,6 +29,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         SwipeLayout swipeLayout;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
+        private MyRegionsAdapter.MyRegionViewHolder.ClickListener onDeleteListener;
         private boolean isItemOpened;
 
         MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
@@ -79,6 +80,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
                     //when user's hand released.
                 }
             });
+
         }
 
         @Override
@@ -137,7 +139,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
             public void onClick(View view) {
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
-                notifyItemRemoved(position);
+                notifyDataSetChanged();
             }
         });
     }
