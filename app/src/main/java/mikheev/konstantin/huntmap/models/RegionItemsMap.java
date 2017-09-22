@@ -1,11 +1,13 @@
 package mikheev.konstantin.huntmap.models;
 
 import android.util.SparseArray;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegionItemsMap {
     private SparseArray<RegionItem> regionItemSparseArray = new SparseArray<RegionItem>();
-    private List<RegionItem> regionItemsList;
+    private List<RegionItem> regionItemsList = new ArrayList<>();
 
     public void addRegionItem(int regionId, RegionItem regionItem) {
         if (regionItem != null && regionItemSparseArray.get(regionId) == null) {

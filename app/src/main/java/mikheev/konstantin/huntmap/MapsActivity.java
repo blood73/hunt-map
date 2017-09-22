@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
@@ -15,7 +16,8 @@ import mikheev.konstantin.huntmap.fragments.MyMapsFragment;
 import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.models.RegionItemsMap;
 
-public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener {
+public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener,
+        AllMapsFragment.MapsInterface {
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
@@ -51,6 +53,10 @@ public class MapsActivity extends AppCompatActivity implements AllMapsFragment.O
     public void onBuyButtonClicked(List<RegionItem> regionItemListFromFragment) {
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
         ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemListFromFragment);
+    }
+
+    public RegionItemsMap getAllMaps() {
+        return allRegionItemsMap;
     }
 
     @Override
