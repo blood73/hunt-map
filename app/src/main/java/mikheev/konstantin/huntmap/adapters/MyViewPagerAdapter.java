@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 import java.util.WeakHashMap;
-
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.fragments.AllMapsFragment;
 import mikheev.konstantin.huntmap.fragments.MyMapsFragment;

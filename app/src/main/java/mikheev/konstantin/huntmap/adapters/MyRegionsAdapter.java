@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.daimajia.swipe.SwipeLayout;
-
 import java.util.List;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.models.RegionItem;
@@ -29,7 +27,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         SwipeLayout swipeLayout;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
-        private MyRegionsAdapter.MyRegionViewHolder.ClickListener onDeleteListener;
         private boolean isItemOpened;
 
         MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
