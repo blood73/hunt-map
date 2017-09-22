@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import mikheev.konstantin.huntmap.MapsActivity;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.adapters.RegionsAdapter;
 import mikheev.konstantin.huntmap.models.RegionItem;
@@ -27,7 +26,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private RegionsAdapter adapter;
     private Button buyButton;
     private int totalPrice = 0;
-    OnBuyButtonClickedListener buButtonListener;
+    OnBuyButtonClickedListener buyButtonListener;
     private TextView emptyTextView;
     private MapsInterface mapsInterface;
 
@@ -82,7 +81,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            buButtonListener = (OnBuyButtonClickedListener) context;
+            buyButtonListener = (OnBuyButtonClickedListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnBuyButtonClickedListener");
@@ -116,7 +115,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
 
         totalPrice = 0;
         buyButton.setVisibility(View.GONE);
-        buButtonListener.onBuyButtonClicked(adapter.getRegionItems());
+        buyButtonListener.onBuyButtonClicked(adapter.getRegionItems());
     }
 
     private void initializeAdapter() {
