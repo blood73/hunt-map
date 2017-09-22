@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
@@ -16,13 +15,16 @@ import mikheev.konstantin.huntmap.fragments.MyMapsFragment;
 import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.models.RegionItemsMap;
 
-public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener,
-        AllMapsFragment.MapsInterface {
+public class MapsActivity extends AppCompatActivity implements AllMapsFragment.OnBuyButtonClickedListener {
 
     private MyViewPagerAdapter myViewPagerAdapter;
     private ViewPager mViewPager;
     private RegionItemsMap allRegionItemsMap;
     private RegionItemsMap myRegionItemsMap;
+
+    public interface MapsInterface {
+        RegionItemsMap getAllMaps();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

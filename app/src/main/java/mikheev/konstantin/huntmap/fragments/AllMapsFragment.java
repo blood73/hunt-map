@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+
+import mikheev.konstantin.huntmap.MapsActivity;
 import mikheev.konstantin.huntmap.R;
 import mikheev.konstantin.huntmap.adapters.RegionsAdapter;
 import mikheev.konstantin.huntmap.models.RegionItem;
@@ -29,15 +31,11 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     private int totalPrice = 0;
     OnBuyButtonClickedListener buButtonListener;
     private TextView emptyTextView;
-    private MapsInterface mapsInterface;
+    private MapsActivity.MapsInterface mapsInterface;
     private RegionItemsMap regionItemsMap = new RegionItemsMap();
 
     public interface OnBuyButtonClickedListener {
         void onBuyButtonClicked(List<RegionItem> regionItemList);
-    }
-
-    public interface MapsInterface {
-        RegionItemsMap getAllMaps();
     }
 
     @Override
@@ -90,7 +88,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         }
 
         try {
-            mapsInterface = (MapsInterface ) context;
+            mapsInterface = (MapsActivity.MapsInterface) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement MyInterface");
