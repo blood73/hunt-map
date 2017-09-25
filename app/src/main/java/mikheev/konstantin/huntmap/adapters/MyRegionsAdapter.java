@@ -92,20 +92,27 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         }
 
         public interface OnDeleteButtonItemClickListener {
-            void onDeleteIsClick(int position);
+            void onDeleteClicked(int position);
+        }
+
+        public interface OnProlongateButtonItemClickListener {
+            void onProlongateClicked(int position, long timestampEnd);
         }
     }
 
     public static List<RegionItem> regionItems;
     private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
     private MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
+    private MyRegionViewHolder.OnProlongateButtonItemClickListener prolongateButtonListener;
     private static int PROLONGATE_DAYS = 30;
 
     public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener,
-                            MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener) {
+                            MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener,
+                            MyRegionViewHolder.OnProlongateButtonItemClickListener prolongateButtonListener) {
         this.regionItems = regionItems;
         this.clickListener = clickListener;
         this.deleteButtonListener = deleteButtonListener;
+        this.prolongateButtonListener = prolongateButtonListener;
     }
 
     @Override
@@ -132,24 +139,28 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         myRegionViewHolder.prolongateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                regionItem.setTimestampEnd(Utils.getNewTimestampByAddDays(Utils.getCurrentTimestamp(), PROLONGATE_DAYS));
+                long newTimestampEnd = Utils.getNewTimestampByAddDays(Utils.getCurrentTimestamp(), PROLONGATE_DAYS);
+                if (prolongateButtonListener != null) {
+                    prolongateButtonListener.onProlongateClicked(regionItem.getRegionId(), newTimestampEnd);
+                }
+                regionItem.setTimestampEnd(newTimestampEnd);
                 regionItem.setIsBought(true);
                 notifyItemChanged(position);
             }
         });
 
-
         myRegionViewHolder.deleteImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (deleteButtonListener != null) {
-                    deleteButtonListener.onDeleteIsClick(regionItem.getRegionId());
+                    deleteButtonListener.onDeleteClicked(regionItem.getRegionId());
                 }
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
                 notifyDataSetChanged();
             }
         });
+
     }
 
     @Override

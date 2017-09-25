@@ -75,6 +75,13 @@ public class MapsActivity extends AppCompatActivity
         ((AllMapsFragment) fragmentAllMaps).updateMyMapsItems(regionItemsMap.getMapsList());
     }
 
+    public void prolongateMap(int regionId, long timestampEnd) {
+        regionItemsMap.prolongateRegionItem(regionId, timestampEnd);
+
+        Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

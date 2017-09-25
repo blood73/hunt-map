@@ -18,6 +18,11 @@ public class RegionItemsMap extends SparseArray<RegionItem> {
         regionItem.setIsBought(false);
     }
 
+    public void prolongateRegionItem(int regionId, long timestampEnd) {
+        RegionItem regionItem = this.get(regionId);
+        regionItem.setTimestampEnd(timestampEnd);
+    }
+
     public List<RegionItem> getMapsList() {
         List<RegionItem> regionItemsList = new ArrayList<>();
 
