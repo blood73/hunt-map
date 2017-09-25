@@ -2,7 +2,6 @@ package mikheev.konstantin.huntmap.adapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +82,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
 
         @Override
         public void onClick(View v) {
-            Log.d("isItemOpened:", Boolean.toString(isItemOpened));
             if (listener != null && !isItemOpened) {
                 listener.onItemClicked(getAdapterPosition());
             }
@@ -124,7 +122,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     }
 
     @Override
-    public void onBindViewHolder(MyRegionsAdapter.MyRegionViewHolder myRegionViewHolder, final int position) {
+    public void onBindViewHolder(final MyRegionsAdapter.MyRegionViewHolder myRegionViewHolder, final int position) {
         final RegionItem regionItem = regionItems.get(position);
 
         myRegionViewHolder.regionName.setText(regionItem.getRegionName());
@@ -157,6 +155,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
                 if (deleteButtonListener != null) {
                     deleteButtonListener.onDeleteClicked(regionItem.getRegionId());
                 }
+                myRegionViewHolder.swipeLayout.close(false);
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
                 notifyDataSetChanged();
