@@ -84,12 +84,12 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         @Override
         public void onClick(View v) {
             if (listener != null && !isItemOpened) {
-                listener.onItemClicked(getAdapterPosition());
+                listener.onItemClicked(MyRegionsAdapter.regionItems.get(getAdapterPosition()).getRegionId());
             }
         }
 
         public interface ClickListener {
-            public void onItemClicked(int position);
+            public void onItemClicked(int regionId);
         }
 
         public interface OnDeleteButtonItemClickListener {
@@ -101,7 +101,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         }
     }
 
-    private List<RegionItem> regionItems;
+    public static List<RegionItem> regionItems;
     private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
     private MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
     private static int PROLONGATE_DAYS = 30;

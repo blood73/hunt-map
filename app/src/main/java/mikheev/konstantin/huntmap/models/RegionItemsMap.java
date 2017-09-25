@@ -14,7 +14,8 @@ public class RegionItemsMap extends SparseArray<RegionItem> {
     }
 
     public void deleteRegionItem(int regionId) {
-        this.remove(regionId);
+        RegionItem regionItem = this.get(regionId);
+        regionItem.setIsBought(false);
     }
 
     public List<RegionItem> getMapsList() {

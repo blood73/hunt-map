@@ -81,12 +81,14 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     }
 
     @Override
-    public void onItemClicked(int position) {
-        //TODO: change the logic to work with the regionId param
-        RegionItem regionItem = regionItems.get(position);
-        if (regionItem.getTimestampEnd() > Utils.getCurrentTimestamp()) {
-            Toast toast = Toast.makeText(getActivity(), getActivity().getString(R.string.open_map), Toast.LENGTH_SHORT);
-            toast.show();
+    public void onItemClicked(int regionId) {
+        for (RegionItem item : regionItems) {
+            if (item.getRegionId() == regionId) {
+                if (item.getTimestampEnd() > Utils.getCurrentTimestamp()) {
+                    Toast toast = Toast.makeText(getActivity(), item.getRegionName(), Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
         }
     }
 
