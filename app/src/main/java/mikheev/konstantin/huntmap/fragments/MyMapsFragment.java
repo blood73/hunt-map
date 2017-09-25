@@ -96,12 +96,6 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
      private void initializeAdapter() {
          adapter = new MyRegionsAdapter(regionItems, this);
-         adapter.setDeleteButtonListener(new MyRegionsAdapter.MyRegionViewHolder.OnDeleteButtonItemClickListener() {
-             @Override
-             public void onDeleteIsClick(View button, int position) {
-                 RegionItem regionItem = regionItems.get(position);
-             }
-         });
          rvRegions.setAdapter(adapter);
      }
 

@@ -142,16 +142,17 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         });
 
 
-        /*myRegionViewHolder.setDeleteButtonListener(new MyRegionViewHolder.OnDeleteButtonItemClickListener() {
+        myRegionViewHolder.deleteImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDeleteIsClick(int position) {
+            public void onClick(View view) {
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
                 notifyDataSetChanged();
-                deleteButtonListener.onDeleteIsClick(position);
+                if (deleteButtonListener != null) {
+                    deleteButtonListener.onDeleteIsClick(position);
+                }
             }
-        });*/
-
+        });
     }
 
     @Override
