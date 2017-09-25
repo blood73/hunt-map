@@ -27,7 +27,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         SwipeLayout swipeLayout;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
-        private MyRegionsAdapter.MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
         private boolean isItemOpened;
 
         MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
@@ -94,10 +93,6 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
 
         public interface OnDeleteButtonItemClickListener {
             void onDeleteIsClick(int position);
-        }
-
-        public void setDeleteButtonListener(OnDeleteButtonItemClickListener deleteButtonListener) {
-            this.deleteButtonListener = deleteButtonListener;
         }
     }
 
