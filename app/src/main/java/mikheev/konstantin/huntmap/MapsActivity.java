@@ -66,6 +66,10 @@ public class MapsActivity extends AppCompatActivity
         ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
     }
 
+    public void deleteFromMyMaps(int regionId) {
+        //TODO: delete from my maps
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

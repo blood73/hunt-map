@@ -18,7 +18,7 @@ import mikheev.konstantin.huntmap.adapters.MyRegionsAdapter;
 import mikheev.konstantin.huntmap.models.RegionItem;
 import mikheev.konstantin.huntmap.utils.Utils;
 
-public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegionViewHolder.ClickListener {
+public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegionViewHolder.ClickListener, MyRegionsAdapter.MyRegionViewHolder.OnDeleteButtonItemClickListener {
 
     private List<RegionItem> regionItems;
     private RecyclerView rvRegions;
@@ -29,6 +29,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     public interface MyMapsInterface {
         List<RegionItem> getMyMaps();
         void addToMyMaps(List<RegionItem> regionItemList);
+        void deleteFromMyMaps(int regionId);
     }
 
     @Override
@@ -88,8 +89,19 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
         }
     }
 
+    @Override
+    public void onDeleteIsClick(int position) {
+        RegionItem regionItem = regionItems.get(position);
+    }
+
      private void initializeAdapter() {
          adapter = new MyRegionsAdapter(regionItems, this);
+         adapter.setDeleteButtonListener(new MyRegionsAdapter.MyRegionViewHolder.OnDeleteButtonItemClickListener() {
+             @Override
+             public void onDeleteIsClick(View button, int position) {
+                 RegionItem regionItem = regionItems.get(position);
+             }
+         });
          rvRegions.setAdapter(adapter);
      }
 

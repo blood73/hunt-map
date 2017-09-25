@@ -27,6 +27,7 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         SwipeLayout swipeLayout;
 
         private MyRegionsAdapter.MyRegionViewHolder.ClickListener listener;
+        private MyRegionsAdapter.MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
         private boolean isItemOpened;
 
         MyRegionViewHolder(View itemView, MyRegionsAdapter.MyRegionViewHolder.ClickListener listener) {
@@ -90,10 +91,19 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         public interface ClickListener {
             public void onItemClicked(int position);
         }
+
+        public interface OnDeleteButtonItemClickListener {
+            void onDeleteIsClick(int position);
+        }
+
+        public void setDeleteButtonListener(OnDeleteButtonItemClickListener deleteButtonListener) {
+            this.deleteButtonListener = deleteButtonListener;
+        }
     }
 
     private List<RegionItem> regionItems;
     private MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener;
+    private MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
     private static int PROLONGATE_DAYS = 30;
 
     public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
@@ -131,14 +141,17 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
             }
         });
 
-        myRegionViewHolder.deleteImageButton.setOnClickListener(new View.OnClickListener() {
+
+        /*myRegionViewHolder.setDeleteButtonListener(new MyRegionViewHolder.OnDeleteButtonItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onDeleteIsClick(int position) {
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
                 notifyDataSetChanged();
+                deleteButtonListener.onDeleteIsClick(position);
             }
-        });
+        });*/
+
     }
 
     @Override
