@@ -91,7 +91,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
     @Override
     public void onDeleteIsClick(int regionId) {
-        
+        myMapsInterface.deleteFromMyMaps(regionId);
     }
 
      private void initializeAdapter() {

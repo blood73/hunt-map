@@ -67,7 +67,12 @@ public class MapsActivity extends AppCompatActivity
     }
 
     public void deleteFromMyMaps(int regionId) {
-        //TODO: delete from my maps
+        regionItemsMap.deleteRegionItem(regionId);
+        Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
+
+        Fragment fragmentAllMaps = myViewPagerAdapter.getFragmentByPosition(1);
+        ((AllMapsFragment) fragmentAllMaps).updateMyMapsItems(regionItemsMap.getMapsList());
     }
 
     @Override
