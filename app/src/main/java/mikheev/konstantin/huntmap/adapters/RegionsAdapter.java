@@ -1,5 +1,6 @@
 package mikheev.konstantin.huntmap.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,12 +18,10 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
 
     public static class RegionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private static final String TAG = RegionViewHolder.class.getSimpleName();
         CardView regionCardView;
         TextView regionName;
         TextView regionPrice;
         ImageView regionSelectButton;
-        LinearLayout selectedIconLayout;
         LinearLayout rootLayout;
         private ClickListener listener;
 
@@ -33,7 +32,6 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
             regionName = (TextView) itemView.findViewById(R.id.region_name);
             regionPrice = (TextView) itemView.findViewById(R.id.region_price);
             regionSelectButton = (ImageView) itemView.findViewById(R.id.select_image_button);
-            selectedIconLayout = (LinearLayout) itemView.findViewById(R.id.selected_icon_layout);
             rootLayout = (LinearLayout) itemView.findViewById(R.id.root_layout);
 
             this.listener = listener;
@@ -54,15 +52,12 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
 
     private List<RegionItem> regionItems;
     private RegionViewHolder.ClickListener clickListener;
+    private Context mContext;
 
-    public RegionsAdapter(List<RegionItem> regionItems, RegionViewHolder.ClickListener clickListener) {
+    public RegionsAdapter(Context context, List<RegionItem> regionItems, RegionViewHolder.ClickListener clickListener) {
         this.regionItems = regionItems;
         this.clickListener = clickListener;
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
+        this.mContext = context;
     }
 
     @Override
@@ -74,17 +69,19 @@ public class RegionsAdapter extends SelectableAdapter<RegionsAdapter.RegionViewH
     @Override
     public void onBindViewHolder(RegionViewHolder regionViewHolder, int position) {
         regionViewHolder.regionName.setText(regionItems.get(position).getRegionName());
-        regionViewHolder.regionPrice.setText(Integer.toString(regionItems.get(position).getRegionPrice()));
+
+        String priceText = String.format(mContext.getString(R.string.region_price), regionItems.get(position).getRegionPrice());
+        regionViewHolder.regionPrice.setText(priceText);
 
         if (regionItems.get(position).getIsBought()) {
-            regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+            regionViewHolder.regionSelectButton.setVisibility(View.GONE);
             regionViewHolder.rootLayout.setBackgroundResource(R.color.boughtRegionBackground);
         } else {
             if (isSelected(position)) {
-                regionViewHolder.selectedIconLayout.setVisibility(View.VISIBLE);
+                regionViewHolder.regionSelectButton.setVisibility(View.VISIBLE);
                 regionViewHolder.rootLayout.setBackgroundResource(R.color.selectedRegionBackground);
             } else {
-                regionViewHolder.selectedIconLayout.setVisibility(View.GONE);
+                regionViewHolder.regionSelectButton.setVisibility(View.GONE);
                 regionViewHolder.rootLayout.setBackgroundResource(R.color.unselectedRegionBackground);
             }
         }

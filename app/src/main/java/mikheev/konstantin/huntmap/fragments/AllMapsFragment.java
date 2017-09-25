@@ -48,11 +48,10 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         buyButton = (Button) rootView.findViewById(R.id.buy_button);
         emptyTextView = (TextView) rootView.findViewById(R.id.empty_view);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rvRegions.setLayoutManager(llm);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rvRegions.setLayoutManager(linearLayoutManager);
         initializeAdapter();
 
-        Button buyButton = (Button) rootView.findViewById(R.id.buy_button);
         buyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +97,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     }
 
     private void clickBuyButton() {
-        Resources res = getResources();
-
-        String textBuyResult = String.format(res.getString(R.string.buy_button_pressed), totalPrice);
+        String textBuyResult = String.format(getActivity().getString(R.string.buy_button_pressed), totalPrice);
         Toast toast = Toast.makeText(getActivity(), textBuyResult, Toast.LENGTH_SHORT);
         toast.show();
 
@@ -114,7 +111,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     }
 
     private void initializeAdapter() {
-        adapter = new RegionsAdapter(regionItems, this);
+        adapter = new RegionsAdapter(getActivity(), regionItems, this);
         rvRegions.setAdapter(adapter);
     }
 
@@ -141,8 +138,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
                 buyButton.setVisibility(View.GONE);
             }
 
-            Resources res = getResources();
-            String textBuyButton = String.format(res.getString(R.string.buy_button), totalPrice);
+            String textBuyButton = String.format(getActivity().getString(R.string.buy_button), totalPrice);
             buyButton.setText(textBuyButton);
         }
     }

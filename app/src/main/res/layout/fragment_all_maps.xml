@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@android:color/white">
 
     <Button
         android:id="@+id/buy_button"
         style="@style/BuyButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buy_button_height"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:text="@string/buy_button"

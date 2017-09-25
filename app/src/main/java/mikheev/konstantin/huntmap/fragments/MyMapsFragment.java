@@ -48,8 +48,8 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
         updateEmptyViewState();
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rvRegions.setLayoutManager(llm);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rvRegions.setLayoutManager(linearLayoutManager);
         initializeAdapter();
 
         return rootView;
@@ -82,6 +82,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
 
     @Override
     public void onItemClicked(int position) {
+        //TODO: change the logic to work with the regionId param
         RegionItem regionItem = regionItems.get(position);
         if (regionItem.getTimestampEnd() > Utils.getCurrentTimestamp()) {
             Toast toast = Toast.makeText(getActivity(), getActivity().getString(R.string.open_map), Toast.LENGTH_SHORT);

@@ -15,7 +15,7 @@
     <dimen name="region_price_height">24dp</dimen>
     <dimen name="region_price_text_size">12sp</dimen>
     <dimen name="region_price_margin_top">-8dp</dimen>
-    <dimen name="select_image_button_width">16dp</dimen>
+    <dimen name="select_image_button_width">32dp</dimen>
     <dimen name="buy_button_text_size">16sp</dimen>
     <dimen name="table_header_text_size">12sp</dimen>
     <dimen name="table_header_line_spacing_extra">4sp</dimen>
@@ -29,4 +29,6 @@
     <dimen name="arrow_image_width">32dp</dimen>
     <dimen name="arrow_image_padding_end">16dp</dimen>
     <dimen name="delete_button_width">64dp</dimen>
+    <dimen name="tabs_height">48dp</dimen>
+    <dimen name="buy_button_height">48dp</dimen>
 </resources>
