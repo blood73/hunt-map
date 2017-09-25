@@ -145,14 +145,10 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
     public void updateMyMapsItems(List<RegionItem> newRegionItems) {
 
         regionItems = allMapsInterface.getAllMaps();
-        for (RegionItem regionItem : newRegionItems) {
-            if (regionItem != null && regionItem.getIsBought() && !regionItems.contains(regionItem)) {
-                regionItems.add(regionItem);
-            }
-        }
 
         adapter.setRegionItems(regionItems);
         adapter.notifyDataSetChanged();
+
         updateEmptyViewState();
     }
 

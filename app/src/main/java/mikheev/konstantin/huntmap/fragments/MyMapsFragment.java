@@ -114,16 +114,11 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     }
 
     public void updateMyMapsItems(List<RegionItem> newRegionItems) {
-
         regionItems = myMapsInterface.getMyMaps();
-        for (RegionItem regionItem : newRegionItems) {
-            if (regionItem != null && regionItem.getIsBought() && !regionItems.contains(regionItem)) {
-                regionItems.add(regionItem);
-            }
-        }
 
         adapter.setRegionItems(regionItems);
         adapter.notifyDataSetChanged();
+
         updateEmptyViewState();
     }
 
