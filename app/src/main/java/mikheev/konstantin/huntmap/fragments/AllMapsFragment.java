@@ -142,7 +142,7 @@ public class AllMapsFragment extends Fragment implements RegionsAdapter.RegionVi
         }
     }
 
-    public void updateMyMapsItems(List<RegionItem> newRegionItems) {
+    public void updateMyMapsItems() {
 
         regionItems = allMapsInterface.getAllMaps();
 

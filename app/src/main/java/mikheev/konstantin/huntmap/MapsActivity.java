@@ -63,23 +63,23 @@ public class MapsActivity extends AppCompatActivity
         }
 
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
-        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems();
     }
 
     public void deleteFromMyMaps(int regionId) {
         regionItemsMap.deleteRegionItem(regionId);
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
-        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems();
 
         Fragment fragmentAllMaps = myViewPagerAdapter.getFragmentByPosition(1);
-        ((AllMapsFragment) fragmentAllMaps).updateMyMapsItems(regionItemsMap.getMapsList());
+        ((AllMapsFragment) fragmentAllMaps).updateMyMapsItems();
     }
 
     public void prolongateMap(int regionId, long timestampEnd) {
         regionItemsMap.prolongateRegionItem(regionId, timestampEnd);
 
         Fragment fragmentMyMaps = myViewPagerAdapter.getFragmentByPosition(0);
-        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems(regionItemsMap.getBoughtMapsList());
+        ((MyMapsFragment) fragmentMyMaps).updateMyMapsItems();
     }
 
     @Override

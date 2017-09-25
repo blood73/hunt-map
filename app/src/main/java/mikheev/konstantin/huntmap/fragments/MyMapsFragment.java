@@ -97,11 +97,13 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     @Override
     public void onDeleteClicked(int regionId) {
         myMapsInterface.deleteFromMyMaps(regionId);
+        updateMyMapsItems();
     }
 
     @Override
     public void onProlongateClicked(int regionId, long timestampEnd) {
         myMapsInterface.prolongateMap(regionId, timestampEnd);
+        updateMyMapsItems();
     }
 
      private void initializeAdapter() {
@@ -113,7 +115,7 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
         regionItems = new ArrayList<>();
     }
 
-    public void updateMyMapsItems(List<RegionItem> newRegionItems) {
+    public void updateMyMapsItems() {
         regionItems = myMapsInterface.getMyMaps();
 
         adapter.setRegionItems(regionItems);
