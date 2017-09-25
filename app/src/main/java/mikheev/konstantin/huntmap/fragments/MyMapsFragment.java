@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,14 +84,12 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     }
 
     @Override
-    public void onItemClicked(int regionId) {
-        for (RegionItem item : regionItems) {
-            if (item.getRegionId() == regionId) {
-                if (item.getTimestampEnd() > Utils.getCurrentTimestamp()) {
-                    Toast toast = Toast.makeText(getActivity(), item.getRegionName(), Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
+    public void onItemClicked(int position) {
+        RegionItem regionItem = regionItems.get(position);
+
+        if (regionItem.getTimestampEnd() > Utils.getCurrentTimestamp()) {
+            Toast toast = Toast.makeText(getActivity(), regionItem.getRegionName(), Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 
