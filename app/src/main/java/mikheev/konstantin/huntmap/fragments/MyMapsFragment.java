@@ -90,12 +90,12 @@ public class MyMapsFragment extends Fragment implements MyRegionsAdapter.MyRegio
     }
 
     @Override
-    public void onDeleteIsClick(int position) {
-        RegionItem regionItem = regionItems.get(position);
+    public void onDeleteIsClick(int regionId) {
+        
     }
 
      private void initializeAdapter() {
-         adapter = new MyRegionsAdapter(regionItems, this);
+         adapter = new MyRegionsAdapter(regionItems, this, this);
          rvRegions.setAdapter(adapter);
      }
 

@@ -106,9 +106,11 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
     private MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener;
     private static int PROLONGATE_DAYS = 30;
 
-    public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener) {
+    public MyRegionsAdapter(List<RegionItem> regionItems, MyRegionsAdapter.MyRegionViewHolder.ClickListener clickListener,
+                            MyRegionViewHolder.OnDeleteButtonItemClickListener deleteButtonListener) {
         this.regionItems = regionItems;
         this.clickListener = clickListener;
+        this.deleteButtonListener = deleteButtonListener;
     }
 
     @Override
@@ -145,12 +147,12 @@ public class MyRegionsAdapter extends RecyclerView.Adapter<MyRegionsAdapter.MyRe
         myRegionViewHolder.deleteImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (deleteButtonListener != null) {
+                    deleteButtonListener.onDeleteIsClick(regionItem.getRegionId());
+                }
                 regionItem.setIsBought(false);
                 regionItems.remove(regionItem);
                 notifyDataSetChanged();
-                if (deleteButtonListener != null) {
-                    deleteButtonListener.onDeleteIsClick(position);
-                }
             }
         });
     }
